@@ -52,7 +52,7 @@ const Home: React.FC = () => {
 
         <IonItem>
           <IonLabel>SelectSearchType</IonLabel>
-          <IonSelect value={type} onIonChange={(e) => setType(e.detail.value)}>
+          <IonSelect slot='end' value={type} onIonChange={(e) => setType(e.detail.value)}>
             <IonSelectOption value= "" >All</IonSelectOption>
             <IonSelectOption value="movie">Movies</IonSelectOption>
             <IonSelectOption value="series">Series</IonSelectOption>

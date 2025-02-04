@@ -1,0 +1,4 @@
+ion-modal {
+    --backdrop-opacity: 0.9;
+    --backdrop-background-color: #000;
+}

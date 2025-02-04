@@ -2,7 +2,8 @@ import { IonBackButton, IonButton, IonButtons, IonCard, IonCardContent, IonCardH
 import React, { useState } from 'react';
 import { RouteComponentProps } from 'react-router';
 import useApi, { DetailsResult } from '../hooks/useApi';
-import { starHalfOutline } from 'ionicons/icons';
+import { bodyOutline, clipboardOutline, starHalfOutline, trophyOutline } from 'ionicons/icons';
+import './Details.css';
 
 interface DetailsPageProps extends RouteComponentProps<{
     id: string;
@@ -25,7 +26,7 @@ const Details: React.FC<DetailsPageProps> = ({match}) => { // Added async here
 
     return (
         <IonPage>
-            <IonHeader>
+            <IonHeader mode='ios'>
                 <IonToolbar>
                     <IonButtons slot = "start">
                         <IonBackButton defaultHref='/movies'></IonBackButton>
@@ -35,7 +36,7 @@ const Details: React.FC<DetailsPageProps> = ({match}) => { // Added async here
             </IonHeader>
             <IonContent>
                 {information && (
-                    <IonCard>
+                    <IonCard slot='fixed'>
                         <IonCardHeader>
                             <IonCardTitle>{information.Title}</IonCardTitle>
                             <IonCardSubtitle>{information.Year}</IonCardSubtitle>
@@ -50,14 +51,26 @@ const Details: React.FC<DetailsPageProps> = ({match}) => { // Added async here
                     </IonCard>
                 )}
 
-                <IonModal trigger='open-modal' initialBreakpoint={.25} breakpoints={[0,.25,.5,.75]}>
+                <IonModal className='ion-modal' trigger='open-modal' initialBreakpoint={.25} breakpoints={[0,.25,.5,.75]}>
                     <IonContent className='ion-padding'>
-                        Hello Modal
+                    <IonItem lines='none'>
+                        <IonIcon icon={clipboardOutline} slot="start"/>
+                        <IonLabel>{information?.Director} </IonLabel>
+                    </IonItem>
+                    <IonItem lines='none'>
+                        <IonIcon icon={bodyOutline} slot="start"/>
+                        <IonLabel className='ion-text-wrap'>{information?.Actors}</IonLabel>
+                    </IonItem>
+                    <IonItem lines='none'>
+                        <IonIcon icon={trophyOutline} slot="start"/>
+                        <IonLabel className='ion-text-wrap'>{information?.Awards}</IonLabel>
+                    </IonItem>
+                    <p className='ion-padding'>{information?.Plot} </p>
                     </IonContent>
                 </IonModal>
             </IonContent>
             <IonFooter>
-                <IonButton expand='full' id='open-modal'>Show More</IonButton>
+                <IonButton expand='block' id='open-modal'>Show More</IonButton>
             </IonFooter>
         </IonPage>
     );
