@@ -5,6 +5,19 @@ export enum SearchType{
     episode = 'episode'
 }
 
+export interface SearchError{
+    Response : string
+    Error : string 
+}
+
+export interface SearchResult {
+    Title : string
+    Year : string
+    Poster : string
+    imdbID : string
+    Type : string
+}
+
 export interface DetailsResult{
     Genre : string
     Title : string
@@ -21,7 +34,7 @@ export const useApi = () => {
     let url = 'https://www.omdbapi.com/'
     let apiKey = '2d6abe28'
 
-    const searchData = async(title : string, type : SearchType): Promise<any> =>{
+    const searchData = async(title : string, type : SearchType): Promise<SearchResult[] | SearchError> =>{
         const result = await fetch(`${url}?s=${encodeURI(title)}&type=${type}&apiKey=${apiKey}`,)
         return result.json()
     }
