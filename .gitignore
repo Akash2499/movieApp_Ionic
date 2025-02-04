@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# apis
+#/apis.tsx not ignored because it is free
+
 # production
 /dist
 

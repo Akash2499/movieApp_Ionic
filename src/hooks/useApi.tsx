@@ -1,3 +1,5 @@
+import {omdbapi} from '../../apis'
+
 export enum SearchType{
     all = '',
     movie = 'movie',
@@ -33,7 +35,7 @@ export interface DetailsResult{
 
 export const useApi = () => {
     let url = 'https://www.omdbapi.com/'
-    let apiKey = '2d6abe28'
+    let apiKey = omdbapi;
 
     const searchData = async(title : string, type : SearchType): Promise<SearchResult[] | SearchError> =>{
         const result = await fetch(`${url}?s=${encodeURI(title)}&type=${type}&apiKey=${apiKey}`,)

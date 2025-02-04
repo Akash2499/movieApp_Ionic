@@ -1,0 +1,1 @@
+export const omdbapi = '2d6abe28'
